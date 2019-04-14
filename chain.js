@@ -1,5 +1,5 @@
 var Block = require("./block");
-var Transaction = require("./transcation");
+var Transaction = require("./transaction");
 
 class BlockChain {
     

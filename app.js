@@ -1,6 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var Transaction = require("./transcation");
+var Transaction = require("./transaction");
 var BlockChain = require("./chain");
 
 var app = express();
@@ -12,33 +12,7 @@ var chain = new BlockChain();
 
 
 app.get('/blocks', (req, res) => {
-    // const connection = mysql.createConnection({
-    //     host: "localhost",
-    //     user: "root",
-    //     password: "password",
-    //     database: "messages_database"
-    // })
-
-    // const queryString = 'SELECT * FROM messages'
-    // connection.query(queryString, (err, rows, fields) => {
-    //     if (err) {
-    //         console.log(err.errno);
-    //         res.sendStatus(500);
-    //         return
-    //     } 
-    //     var messages = new Array();
-    //     var s = 0;
-    //     for (var i = 0; i < rows.length; i++) {
-    //         messages[i] = {
-    //             name: rows[i].name,
-    //             message: rows[i].message
-    //         };
-    //     }
-    //     var m = {
-    //         mes: messages
-    //     }
-    //     res.send(m);
-    // })
+    res.send(chain);
     res.end();
 })
 

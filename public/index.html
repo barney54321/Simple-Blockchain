@@ -24,7 +24,9 @@
         <div id="chain">
             <fieldset>
                 <legend><strong>Current Chain</strong></legend>
-                <p id="here"></p>
+                <ol id="here">
+
+                </ol>
             </fieldset>
         </div>
 
@@ -41,21 +43,29 @@
                 getBlocks()
             })
 
-            // function addMessages(message){
-            //     var string = "<h4>" + message.name + "</h4>" + message.message;
-            //     $("#messages").append(string)
-            // }
+            function addBlocks(block){
+                // var string = "<h4>" + message.name + "</h4>" + message.message;
+                // $("#messages").append(string)
+                console.log(block);
+                var string = "<li id='" +block.hash+"'>Index: " + block.index + "<br>Sender: " + block.data.sender + "<br>Receiver: " + block.data.receiver;
+                string = string + "<br>Amount: " + block.data.amount + "<br>Timestamp: " + block.timestamp;
+                string = string + "<br>Prev Hash: " + block.prevHash + "<br>Hash: " + block.hash + "</li>" 
+                $("#here").append(string)
+
+            }
 
             function getBlocks(){
+                document.getElementById("here").innerHTML = "";
                 $.get("http://localhost:3020/blocks", (data) => {
-                    // for (var i = 0; i < data.mes.length; i++) {
-                    //     addMessages(data.mes[i]);
-                    // }
+                    for (var i = 0; i < data.chain.length; i++) {
+                        addBlocks(data.chain[i]);
+                    }
                 })
             }
 
             function sendTransaction(transaction){
-                $.post("http://localhost:3020/blocks", transaction)
+                $.post("http://localhost:3020/blocks", transaction);
+                getBlocks();
             }
         </script>
     </body>
